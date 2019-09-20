@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Quorum.FieldVisor.Mobile.Pages.Popups.CustomPickerPopup"
+    CloseWhenBackgroundIsClicked="True"
+    Disappearing="PopupPage_Disappearing">
+    <StackLayout
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Padding="0">
+   
+        <Frame
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            CornerRadius="5"
+            BackgroundColor="White"
+            Padding="3">
+
+            <StackLayout
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BackgroundColor="{StaticResource QuorumBlue}">
+
+                <ListView
+                    x:Name="mainList"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    ItemSelected="MainList_ItemSelected"
+                    HeightRequest="400"
+                    WidthRequest="300"
+                    BackgroundColor="White"
+                    HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="10">
+                                    <Label
+                                        Text="{Binding Value}"
+                                        FontSize="20"
+                                        LineBreakMode="WordWrap"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
+    </Frame>
+    </StackLayout>
+</pages:PopupPage>
