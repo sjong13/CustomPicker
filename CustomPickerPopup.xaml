@@ -1,55 +1,61 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage
-    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="Quorum.FieldVisor.Mobile.Pages.Popups.CustomPickerPopup"
-    CloseWhenBackgroundIsClicked="True"
-    Disappearing="PopupPage_Disappearing">
-    <StackLayout
-        HorizontalOptions="Center"
-        VerticalOptions="Center"
-        Padding="0">
-   
-        <Frame
-            HorizontalOptions="Center"
-            VerticalOptions="Center"
-            CornerRadius="5"
-            BackgroundColor="White"
-            Padding="3">
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:views="clr-namespace:Quorum.FieldVisor.Mobile.Views"
+                 mc:Ignorable="d"
+                 x:Class="Quorum.FieldVisor.Mobile.Pages.Popups.CustomPickerPopup"
+                 CloseWhenBackgroundIsClicked="True"
+                 AutomationId="CustomPicker">
 
-            <StackLayout
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                BackgroundColor="{StaticResource QuorumBlue}">
+    <RelativeLayout>
+        <StackLayout BackgroundColor="Transparent"
+                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0,Constant=0}"
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0,Constant=0}"
+                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1, Constant=0}"
+                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1, Constant=0}">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="BackgroundTapped"></TapGestureRecognizer>
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
 
-                <ListView
-                    x:Name="mainList"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    ItemSelected="MainList_ItemSelected"
-                    HeightRequest="400"
-                    WidthRequest="300"
-                    BackgroundColor="White"
-                    HasUnevenRows="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Margin="10">
-                                    <Label
-                                        Text="{Binding Value}"
-                                        FontSize="20"
-                                        LineBreakMode="WordWrap"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+        <views:BorderFrame RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0.05,Constant=0}"
+                           RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.05,Constant=0}"
+                           RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0.90, Constant=0}"
+                           RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.90, Constant=0}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           CornerRadius="5"
+                           BackgroundColor="White"
+                           Padding="0"
+                           WidthRequest="375">
+
+            <ListView x:Name="mainList"
+                      ItemSelected="MainList_ItemSelected"
+                      BackgroundColor="White"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None"
+                      Margin="5">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Value}"
+                                       FontSize="20"
+                                       LineBreakMode="WordWrap"
+                                       HorizontalTextAlignment="Center"
+                                       Margin="10"/>
+                                <BoxView HorizontalOptions="FillAndExpand"
+                                         HeightRequest="1" 
+                                         BackgroundColor="{StaticResource LightGray}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
 
             </ListView>
-        </StackLayout>
-    </Frame>
-    </StackLayout>
+        </views:BorderFrame>
+    </RelativeLayout>
 </pages:PopupPage>
